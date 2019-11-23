@@ -1,0 +1,21 @@
+<mat-grid-list cols="1">
+  <app-toolbar class="titlebar"></app-toolbar>
+
+  <div class="box">
+    <mat-sidenav-container class="container">
+      <mat-sidenav mode="side" opened class="side">
+        <p class="subtitle">Categorias</p>
+        <mat-nav-list>
+          <a mat-list-item 
+            *ngFor="let category of categories"
+            [routerLink]="getLink(category)">
+            {{ category.CategoryName }}
+          </a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content class="content">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</mat-grid-list>

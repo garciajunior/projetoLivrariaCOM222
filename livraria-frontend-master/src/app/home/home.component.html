@@ -1,0 +1,13 @@
+<mat-progress-bar 
+    mode="indeterminate" 
+    class="loader"
+    *ngIf="loading">
+</mat-progress-bar>
+<div style="margin-top: 20px;">
+    <app-livro-item 
+        [books]="books" 
+        *ngIf="!loading">
+    </app-livro-item>
+</div>
+
+

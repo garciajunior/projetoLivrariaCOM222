@@ -1,0 +1,12 @@
+<mat-progress-bar 
+    mode="indeterminate" 
+    class="loader"
+    *ngIf="loading">
+</mat-progress-bar>
+<div style="margin-top: 20px;">
+    <h3 style="margin-left: 40px;">Livros na categoria {{getCategoryName()}}</h3>
+    <app-livro-item 
+        [books]="books" 
+        *ngIf="!loading">
+    </app-livro-item>
+</div>
