@@ -1,54 +1,24 @@
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
-    id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- Page Content -->
+<div class="container" *ngIf="this.book">
 
+    <div class="row">
 
-
-<!------ Include the above in your HEAD tag ---------->
-
-<div class="row" *ngIf="!(systemCheck | async) && !canEdit">
-    <div class="span8">
-        <div class="row">
-            <div class="span8">
-                <h4><strong>{{title}}</strong></h4>
-            </div>
+        <div class="col-sm-2 ajeita-img">
+            <img [src]="getURL(book.ISBN)" alt="book.title">
         </div>
-        <!-- LZZZZZZZ -->
-        <!-- Imagem -->
-        <div class="row">
-            <div class="span2 other">
-                <a (click)="getLarge(ISBN)"class="thumbnail">
-                    <img [src]="getURL(ISBN)" alt="title" >
-                </a>
-            </div>
-            <!-- Detalhes dos autores -->
-            <div class="container-fluid other">
-                <div class="column">
-                    <div class="col-sm-3" > 
-                        <span> <strong> Our Price:</strong> </span>
-                        <span style="color: red;"> ${{price}}</span> 
-                     </div>
-                    <div class="col-sm-3"><strong>ISBN:</strong> {{ISBN}} </div>
-                    <div class="col-sm-3"><strong>Publisher:</strong> {{publisher}}</div>
-                    <div class="col-sm-3" *ngIf = "this.authors"><strong>Authors:</strong>{{getAuthors()}}</div>
-                    <div class="col-sm-3"><strong>Edition:</strong> {{edition}}</div>
-                    <div class="col-sm-3"><strong>Pages:</strong> {{pages}}</div>
-                </div>
-                <!-- Descrição -->
-            <div class="btn-group" id="content" >
-               
-                <p class="other"><a class="btn " [routerLink]='["/cart", {id: ISBN}]'>Add to cart</a></p>
-            </div>
-            </div>
-
-            <!-- Descrição -->
-            <div class="span6" id="content">
-                <app-readmore [text]="description" [maxHeight]="100"></app-readmore>
-                <!-- <a><a class="btn" [routerLink]='["/cart", {id: ISBN}]'>Add to cart</a></p> -->
-            </div>
+        <div class="card-body col-sm-8">
+            <h3 class="card-title">{{book.title}}</h3>
+            <h4>${{book.price}}</h4>
+            <div><strong>ISBN:</strong> {{book.ISBN}} </div>
+            <div><strong>Publisher:</strong> {{book.publisher}}</div>
+            <div *ngIf="this.authors"><strong>Authors:</strong>{{getAuthors()}}</div>
+            <Strong>Descrição:</Strong>
+            <app-readmore [text]="book.description" [maxHeight]="100"></app-readmore>
         </div>
-
-
+        <div class="ajeita-button">
+            <button [routerLink]='["/cart", {id: book.ISBN}]' type="button" class="btn btn-primary">Comprar</button>
+        </div>
+        
     </div>
 </div>
+<!-- /.container -->

@@ -13,13 +13,6 @@ import { AuthorsService } from '../shared/authors/authors.service'
 })
 export class BookdetailsComponent implements OnInit {
   private book: Book;
-  private description: string;
-  private title: string;
-  private ISBN: string;
-  private price: number;
-  private pages: string;
-  private publisher: string;
-  private edition: string;
   private authors: Author[];
 
 
@@ -36,13 +29,6 @@ export class BookdetailsComponent implements OnInit {
         this.bookSvc.getBookById(id).subscribe(data => {
           //cria um item com quantidade e o objeto recuperado
           this.book = data[0];
-          this.description = data[0].description
-          this.title = data[0].title
-          this.ISBN = data[0].ISBN
-          this.publisher = data[0].publisher
-          this.pages = data[0].pages
-          this.edition = data[0].edition
-          this.price = data[0].price
         })
 
         this.autSvc.getBookAuthors(id).subscribe(data => {
@@ -56,7 +42,6 @@ export class BookdetailsComponent implements OnInit {
     }
 
     )
-    this.getAuthors()
   }
 
   getAuthors() {
@@ -70,7 +55,7 @@ export class BookdetailsComponent implements OnInit {
     authorstring = this.authors[0].nameF +  " " + this.authors[0].nameL;
     
     for (let i = 0; i < this.authors.length; i++){
-      authorstring += " ," + this.authors[i].nameF + " " + this.authors[i].nameL;
+      authorstring += ", " + this.authors[i].nameF + " " + this.authors[i].nameL;
     }
 
     return authorstring;

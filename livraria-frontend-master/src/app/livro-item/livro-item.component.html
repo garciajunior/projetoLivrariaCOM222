@@ -1,4 +1,4 @@
-<mat-card *ngFor="let book of books" class="book-card">
+<!-- <mat-card *ngFor="let book of books" class="book-card">
     <mat-card-header>
         <mat-card-title>{{book.title}}</mat-card-title>
     </mat-card-header>
@@ -15,7 +15,28 @@
         </mat-grid-list>
     </mat-card-content>
     <mat-card-actions class="align">
-        <!-- <button [routerLink] = '["/cart", {id: book.ISBN}]' mat-raised-button color="primary">Visualizar</button> -->
+        <button [routerLink] = '["/cart", {id: book.ISBN}]' mat-raised-button color="primary">Visualizar</button>
         <button [routerLink] = '["/bookdetails", {id: book.ISBN}]' mat-raised-button color="primary">Visualizar</button>
     </mat-card-actions>
-</mat-card>
+</mat-card> -->
+
+<div class="container-fluid" *ngFor="let book of books">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-horizontal">
+                    <div class="img-thumb">
+                        <img [src]="getURL(book.ISBN)" alt="book.title">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{book.title}}</h4>
+                        <p class="card-text">{{getResume(book.description)}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class [routerLink]='["/bookdetails", {id: book.ISBN}]' class="btn btn-primary float-right">Visualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

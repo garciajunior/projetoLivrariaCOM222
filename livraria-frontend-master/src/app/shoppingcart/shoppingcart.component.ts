@@ -26,6 +26,8 @@ export class ShoppingcartComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       var id = params['id'];
       if (id) {
+        console.log(id);
+        
         //busca na api o Id
         this.bookSvc.getBookById(id).subscribe(data => {
           //cria um item com quantidade e o objeto recuperado

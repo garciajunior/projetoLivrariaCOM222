@@ -9,7 +9,7 @@ import { Component, Input, ElementRef, AfterViewInit, OnInit } from '@angular/co
   template: `
   <div [innerHTML]="text" [class.collapsed]="isCollapsed" [style.height]="isCollapsed ? maxHeight+'px' : 'auto'">
   </div>
-      <a *ngIf="isCollapsable" (click)="isCollapsed =! isCollapsed">Read {{isCollapsed? 'more':'less'}}</a>
+      <a style = "color: #008CBA;" *ngIf="isCollapsable" (click)="isCollapsed =! isCollapsed">Leia {{isCollapsed? 'Mais':'Menos'}}</a>
 `,
 styles: [`
   div.collapsed {

@@ -1,13 +1,17 @@
-<mat-progress-bar 
-    mode="indeterminate" 
-    class="loader"
-    *ngIf="loading">
-</mat-progress-bar>
-<div style="margin-top: 20px;">
-    <app-livro-item 
-        [books]="books" 
-        *ngIf="!loading">
-    </app-livro-item>
+<div mode="indeterminate" class="loader" *ngIf="loading">
 </div>
 
 
+<div class="input-group mb-3">
+    <input type="text" class="form-control afasta" placeholder="Pesquise um Livro" aria-label="Recipient's username"
+        aria-describedby="basic-addon2" [(ngModel)]="query"
+        (keyup.enter)="toSearch()">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary afasta" type="button" (click) = "toSearch()">Pesquisar</button>
+    </div>
+</div>
+
+<div style="margin-top: 20px;">
+    <app-livro-item [books]="books" *ngIf="!loading">
+    </app-livro-item>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
 import { Book } from '../shared/books/book'
 import { BookService } from '../shared/books/book.service'
@@ -16,8 +17,10 @@ export class HomeComponent implements OnInit {
 
   books: Array<Book>
   loading: boolean = false
+  query: string = ''
 
-  constructor(private bookSvc: BookService) { }
+  constructor(private bookSvc: BookService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getBooks()
@@ -34,6 +37,11 @@ export class HomeComponent implements OnInit {
         this.loading = false
       }
     )
+  }
+
+  toSearch() {
+    this.router.navigate([`search/${this.query}`])
+    this.query = ''
   }
 
 }
