@@ -115,5 +115,9 @@ export class ShoppingcartComponent implements OnInit {
     this.loadCart();
   }
 
+  getURL(ISBN: string): string {
+    return `https://baldochi.unifei.edu.br/COM222/trabfinal/imagens/${ISBN}.01.THUMBZZZ.jpg`
+  }
+
 }
 
