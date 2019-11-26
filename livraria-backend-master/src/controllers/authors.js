@@ -12,6 +12,7 @@ const controllerAuthors = {
                 .where({
                     ISBN: id
                 })
+                res.json(authors);
            
     },
     async getBooksOfAuthor(id, res) {

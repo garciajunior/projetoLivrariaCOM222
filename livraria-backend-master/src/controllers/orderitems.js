@@ -9,7 +9,6 @@ const controllerOrderItems = {
     async insertOrderItem(orderId, isbn, quant, price, res) {
         if (await db('bookorderitems')
             .insert([{ orderID: orderId, ISBN: isbn, qty: quant, price: price }])){
-                res.send("Sucess")
             }
     },
 

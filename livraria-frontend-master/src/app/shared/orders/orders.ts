@@ -1,5 +1,4 @@
 export class Orders {
-    OrderID: number;
-    CustID: Number;
-    orderdate: Date;
+    custID: Number;
+    orderdate: string;
 }

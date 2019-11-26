@@ -1,6 +1,6 @@
 export class Orderitems {
-    OrderID: number;
+    orderID: number;
     ISBN: Number;
-    qty: Date;
+    qty: number;
     price: number;
 }

@@ -11,7 +11,9 @@ router.get('/:id?', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    controller.insertOrder(req.body.custID, req.body.orderdate, res)  
+    console.log("body: " + req.body);
+    controller.insertOrder(req.body.custID, req.body.orderdate, res)
+      
 })
 
 module.exports = router

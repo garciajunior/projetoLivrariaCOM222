@@ -12,7 +12,7 @@ export class AuthorsService {
 
   constructor(private http: HttpClient) { }
 
-  getBookAuthors(id) {
+  getBookAuthors(id) {    
     return this.http.get<Author[]>(`${Util.API_URL}authors/books/${id}`)
   }
 

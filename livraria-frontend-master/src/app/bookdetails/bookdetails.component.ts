@@ -22,39 +22,39 @@ export class BookdetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute, ) { }
 
   ngOnInit() {
+
     this.activatedRoute.params.subscribe(params => {
       let id = params['id'];
+
       if (id) {
         //busca na api o Id
         this.bookSvc.getBookById(id).subscribe(data => {
-          //cria um item com quantidade e o objeto recuperado
           this.book = data[0];
+          if(this.book){
+            this.getAuthorbyID(id);
+          }
         })
-
-        this.autSvc.getBookAuthors(id).subscribe(data => {
-
-          this.authors = data;
-
-        }
-        )
       }
+    })
+  }
 
-    }
-
-    )
+  getAuthorbyID(id){
+    this.autSvc.getBookAuthors(id).subscribe(data => {
+      this.authors = data;
+    })
   }
 
   getAuthors() {
 
     let authorstring: string;
 
-    if(this.authors.length == 1){
-      return this.authors[0].nameF +  " " + this.authors[0].nameL;
+    if (this.authors.length == 1) {
+      return this.authors[0].nameF + " " + this.authors[0].nameL;
     }
 
-    authorstring = this.authors[0].nameF +  " " + this.authors[0].nameL;
-    
-    for (let i = 0; i < this.authors.length; i++){
+    authorstring = this.authors[0].nameF + " " + this.authors[0].nameL;
+
+    for (let i = 0; i < this.authors.length; i++) {
       authorstring += ", " + this.authors[i].nameF + " " + this.authors[i].nameL;
     }
 
@@ -77,7 +77,7 @@ export class BookdetailsComponent implements OnInit {
   }
 
   getLarge(ISBN: string) {
-    window.open(`https://baldochi.unifei.edu.br/COM222/trabfinal/imagens/${ISBN}.01.LZZZZZZZ.jpg`,"_blank")
+    window.open(`https://baldochi.unifei.edu.br/COM222/trabfinal/imagens/${ISBN}.01.LZZZZZZZ.jpg`, "_blank")
   }
 
 

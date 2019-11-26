@@ -22,16 +22,16 @@
                                             <div class="row">
                                                 <div class="col-md-6 product-name">
                                                     <div class="product-name">
-                                                        <a href="#">{{i.product.title}}</a>
+                                                        <a [routerLink]='["/bookdetails", {id: i.product.ISBN}]'>{{i.product.title}}</a>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 quantity">
-                                                    <label for="quantity">Quantity:</label>
+                                                    <label for="quantity">Quantidade:</label>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <input id="quantity" type="number" value="1"
-                                                                class="form-control quantity-input botao">
-                                                            <button type="button" class="btn btn-link btn-xs botao">
+                                                            <input min="1" id="quantity" type="number" 
+                                                                class="form-control quantity-input botao" name = "quantity" (change)="onChange(i)" [(ngModel)] = "i.quantity">
+                                                            <button (click)= "remove(i.product.ISBN)" type="button" class="btn btn-link btn-xs botao">
                                                                 <span class="fa fa-trash-o"> </span>
                                                             </button>
                                                         </div>
@@ -39,7 +39,7 @@
                                                 </div>
                                                 <div class="row">
                                                 <div class="col-md-3 price">
-                                                    <span>$120</span>
+                                                    <span>${{i.product.price}}</span>
                                                 </div>
                                             </div>
                                             </div>
@@ -52,15 +52,15 @@
                     <div class="col-md-12 col-lg-4">
                         <div class="summary">
                             <h3>Summary</h3>
-                            <div class="summary-item"><span class="text">Subtotal</span><span class="price">$360</span>
+                            <div class="summary-item"><span class="text">Subtotal</span><span class="price">${{totalPrice | number}}</span>
                             </div>
-                            <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span>
+                            <div class="summary-item"><span class="text">Disconto</span><span class="price">${{desconto | number}}</span>
                             </div>
-                            <div class="summary-item"><span class="text">Shipping</span><span class="price">$0</span>
+                            <div class="summary-item"><span class="text">Frete</span><span class="price">${{frete | number}}</span>
                             </div>
-                            <div class="summary-item"><span class="text">Total</span><span class="price">$360</span>
+                            <div class="summary-item"><span class="text">Total</span><span class="price">${{totalPrice + frete - desconto | number}}</span>
                             </div>
-                            <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                            <button type="button" class="btn btn-primary btn-lg btn-block" routerLink="/checkout">Fechar Compra</button>
                         </div>
                     </div>
                 </div>

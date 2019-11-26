@@ -4,6 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Util } from '../util'
 import { Orderitems } from './orderitems'
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +17,10 @@ export class OrderitemsService {
 
   getCategories() {
     return this.http.get<Array<Orderitems>>(`${Util.API_URL}orderitems/`)
+  }
+
+  insertOrderItem(order: string){
+    return this.http.post(`${Util.API_URL}orderitems/`, order, httpOptions);
   }
 
   /*

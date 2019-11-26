@@ -8,9 +8,12 @@ const controllerOrders = {
 
     async insertOrder(custId, Orderdate, res) {
         if(await db('bookorders')
-            .insert([{ custID: custId, orderdate: Orderdate }])){
-                res.send("Sucess")
-            } // {}{}para varios insert     
+            .insert([{ custID: custId, orderdate: Orderdate }])
+            .returning('custID')
+            .into('bookorders')
+            .then(function(id){
+                res.json(id);
+            })); // {}{}para varios insert     
     },
 
     async getOrderbByCustId(id, res) {

@@ -29,6 +29,7 @@ import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
 import { BookdetailsComponent } from './bookdetails/bookdetails.component';
 import { ReadmoreComponent } from './readmore/readmore.component';
 import { SearchComponent } from './search/search.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SearchComponent } from './search/search.component';
     ShoppingcartComponent,
     BookdetailsComponent,
     ReadmoreComponent,
-    SearchComponent
+    SearchComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

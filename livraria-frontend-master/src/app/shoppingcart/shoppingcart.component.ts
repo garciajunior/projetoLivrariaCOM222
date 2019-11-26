@@ -15,6 +15,10 @@ export class ShoppingcartComponent implements OnInit {
 
   private items: Item[] = [];
   private total: number = 0;
+  private quantidade: number;
+  private totalPrice: number = 0;
+  private desconto: number = 0;
+  private frete: number = 0;
 
   constructor(private bookSvc: BookService,
     private OrdersSvc: OrdersService,
@@ -65,13 +69,48 @@ export class ShoppingcartComponent implements OnInit {
             }
           }
           this.loadCart();
+          this.setPrice();
         }
         )
       }else{
         this.loadCart();
+        this.setPrice();
       }
     })
   }
+
+  onChange(book) : void {
+    let cart: any = JSON.parse(localStorage.getItem('cart'));
+
+    for (var i = 0; i < cart.length; i++) {
+      let item: Item = JSON.parse(cart[i]);
+      if (item.product.ISBN == book.product.ISBN) {
+        item.quantity = book.quantity;
+        cart[i] = JSON.stringify(item);
+        localStorage.setItem("cart", JSON.stringify(cart));
+   
+        this.setPrice();
+      }
+    }
+    
+  }
+
+  setPrice(){
+    let valor: number = 0;
+    let freteaux: number = 0;
+    let descaux: number = 0;
+    let cart: any = JSON.parse(localStorage.getItem('cart'));
+		for (var i = 0; i < cart.length; i++) {
+			let item: Item = JSON.parse(cart[i]);
+         valor += item.product.price * item.quantity;
+          freteaux += item.quantity * 1.20;
+          descaux += item.quantity*0.50;
+      }
+      this.totalPrice = valor;
+      this.frete = 10 + freteaux;
+      this.desconto = 5 + descaux;
+
+		}
 
   loadCart(){
     this.total = 0;
@@ -83,7 +122,7 @@ export class ShoppingcartComponent implements OnInit {
 				product: item.product,
 				quantity: item.quantity
       });
-      console.log(this.items);
+      
       
 			this.total += item.product.price * item.quantity;
 		}
@@ -104,7 +143,8 @@ export class ShoppingcartComponent implements OnInit {
 			}
 		}
 		localStorage.setItem("cart", JSON.stringify(cart));
-		this.loadCart();
+    this.loadCart();
+    this.setPrice();
   }
   
   clearcart(){

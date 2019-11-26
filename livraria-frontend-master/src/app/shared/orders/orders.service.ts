@@ -3,7 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Util } from '../util'
 import { Orders } from './orders'
+import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/output_ast';
+import { throwError, Observable } from 'rxjs';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +19,10 @@ export class OrdersService {
 
   getOrders() {
     return this.http.get<Array<Orders>>(`${Util.API_URL}orders/`)
+  }
+
+  insertOrder(order: string){
+    return this.http.post(`${Util.API_URL}orders/`, order, httpOptions);
   }
 
  /*
